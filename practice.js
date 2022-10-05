@@ -279,6 +279,7 @@ var taco1 = {
 taco1.tacoInfo(); // note tacoInfo still gets called like a function
 */
 
+/*
 // Week 2 - Day 3
 var pokemon = [
   { id: 1, name: 'Bulbasaur', types: ['poison', 'grass'] },
@@ -345,3 +346,96 @@ for (var i = 0; i < pokemon.length; i++) {
     console.log(pokemon[i].name.split('').reverse().join(''));
   }
 }
+
+// Week 2 - Day 4
+var nums = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+var moreNums = [
+  [1, 2, 3, 4, 5, 6],
+  [2, 7, 4, 1, 5, 5],
+];
+
+function printAll2d(arr2d) {}
+// printAll2d(nums);
+// printAll2d(moreNums);
+
+function flatten(arr2d) {
+  var flat = [];
+  //your code here
+  for (i = 0; i < arr2d.length; i++) {
+    for (j = 0; j < arr2d[i].length; j++) {
+      flat.push(arr2d[i][j]);
+    }
+  }
+  return flat;
+}
+
+const arr = [1, 2, 3, 4, 5];
+
+console.log(flatten(nums));
+console.log(flatten(moreNums));
+*/
+
+// Hacker Rank - Ransome Note
+function checkMagazine(magazine, note) {
+  /*
+  magazine = "give me one grand today night"
+  note = "give one grand today"
+  key: word 
+  value: true 
+  first initialize ransom = ture. We'll change it later depending on the conditions. 
+  1. Loop through magazine: 
+      a. If the word is in map set add value by 1
+      b. else set value = 1
+  2) Loop through note: 
+      a. if the word is in map subract by one. 
+  3) Loop through the keys of the map:
+      a. If there is a value less than 0; set ransom to false
+          - This means that the note has an one extra word that the magazine does not have. 
+  4) if ransom = true, print yes. else, print no
+  */
+  let replicate = true;
+  let map = {};
+
+  // Step 1:
+  for (let i = 0; i < magazine.length; i++) {
+    if (map[magazine[i]]) {
+      map[magazine[i]] += 1;
+    } else {
+      map[magazine[i]] = 1;
+    }
+  }
+
+  // Step 2:
+  for (let i = 0; i < note.length; i++) {
+    if (map[note[i]]) {
+      map[note[i]] -= 1;
+    } else {
+      map[note[i]] = -1;
+    }
+  }
+
+  // Step 3:
+  let keys = Object.keys(map); // return an arrays with keys of map.
+  for (let i = 0; i < keys.length; i++) {
+    if (map[keys[i]] < 0) {
+      replicate = false;
+    }
+  }
+
+  // Step 4:
+  if (replicate) {
+    console.log('Yes');
+  } else {
+    console.log('No');
+  }
+}
+
+// map1 = { name: 'William', last: 'Zhan', age: 27 };
+// keys = Object.keys(map1);
+// console.log(keys);
+// console.log(map1[keys[0]]);
+// console.log(map1.name);
