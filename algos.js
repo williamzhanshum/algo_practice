@@ -631,6 +631,7 @@ console.log(valid3(str2a));
 console.log(valid3(str3a));
 */
 
+/*
 // -----problem 1 ---------
 //   String: Rotate String
 //   Create a standalone function that accepts a string and an integer,
@@ -686,9 +687,7 @@ const strB3 = 'BCDAB';
 // Explanation: same letters in correct order but there is an extra letter.
 const expected3a = false;
 
-// 1. check if broth string are smae length, if not return false.
-// 2.
-
+// Solution 1:
 function isRotation(str1, str2) {
   if (str1.length !== str2.length) {
     return false;
@@ -706,9 +705,22 @@ function isRotation(str1, str2) {
   return false;
 }
 
-console.log(isRotation(strA1, strB1));
-console.log(isRotation(strA2, strB2));
-console.log(isRotation(strA3, strB3));
+// Solution 2:
+function rotateString3(str1, str2) {
+  check = '';
+  check += str1 + str1;
+  if (check.includes(str2)) {
+    return true;
+  }
+  return false;
+}
+// console.log(isRotation(strA1, strB1));
+// console.log(isRotation(strA2, strB2));
+// console.log(isRotation(strA3, strB3));
+
+console.log(rotateString3(strA1, strB1));
+console.log(rotateString3(strA2, strB2));
+console.log(rotateString3(strA3, strB3));
 
 // ---------- problem # 3 ( this actually belongs to tomorrow, so don't worry if you don't touch it today !
 //   Given an array of objects / dictionaries to represent new inventory,
@@ -740,3 +752,108 @@ const expected2b = [{ name: 'Peanut Butter', quantity: 20 }];
 const newInv3 = [{ name: 'Peanut Butter', quantity: 20 }];
 const currInv3 = [];
 const expected3b = [{ name: 'Peanut Butter', quantity: 20 }];
+*/
+
+// ---------- problem # 1---------------------------------
+//   Given an array of objects / dictionaries to represent new inventory,
+//   and an array of objects / dictionaries to represent current inventory,
+//   update the quantities of the current inventory
+
+//   if the item doesn't exist in current inventory, add it to the inventory
+//   return the current inventory after updating it.
+
+const newInv1 = [
+  { name: 'Grain of Rice', quantity: 9000 },
+  { name: 'Peanut Butter', quantity: 50 },
+  { name: 'Royal Jelly', quantity: 20 },
+];
+const currInv1 = [
+  { name: 'Peanut Butter', quantity: 20 },
+  { name: 'Grain of Rice', quantity: 1 },
+];
+const expected1 = [
+  { name: 'Peanut Butter', quantity: 70 },
+  { name: 'Grain of Rice', quantity: 9001 },
+  { name: 'Royal Jelly', quantity: 20 },
+];
+
+const newInv2 = [];
+const currInv2 = [{ name: 'Peanut Butter', quantity: 20 }];
+const expected2 = [{ name: 'Peanut Butter', quantity: 20 }];
+
+const newInv3 = [{ name: 'Peanut Butter', quantity: 20 }];
+const currInv3 = [];
+const expected3 = [{ name: 'Peanut Butter', quantity: 20 }];
+
+function updateInventory(newInv = [], currInv = []) {
+  for (let i = 0; i < newInv.length; i++) {
+    let itemFound = false;
+    const newItem = newInv[i];
+
+    for (let j = 0; j < currInv.length; ++j) {
+      const currItem = currInv[j];
+
+      if (newItem.name === currItem.name) {
+        itemFound = true;
+        currItem.quantity += newItem.quantity;
+        // no need to keep looping over the rest of the items since we found what we are looking for
+        break;
+      }
+    }
+    // after looking through all current inventory
+    if (itemFound === false) {
+      currInv.push(newItem);
+    }
+  }
+  return currInv;
+}
+
+console.log(updateInventory(newInv1, currInv1));
+
+// Problem 2:
+// Given a string that may have extra spaces at the start and the end,
+// return a new string that has the extra spaces at the start and the end trimmed (removed)
+// do not remove any other spaces.
+
+const str1 = '   hello world    ';
+// Simple Solution
+function trim(str) {
+  return str.trim();
+}
+
+// Solution 2:
+function trim2(str) {
+  let newStr = '';
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] != ' ' || (str[i - 1] != ' ' && str[i + 1] != ' ')) {
+      newStr += str[i];
+    }
+  }
+  return newStr;
+}
+
+console.log(trim2(str1));
+
+// ------------------problem  #3 ------------------
+//   An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+//   typically using all the original letters exactly once.
+//   Is there a quick way to determine if they aren't an anagram before spending more time?
+//   Given two strings
+//   return whether or not they are anagrams
+
+const strA1 = 'yes';
+const strB1 = 'eys';
+const expected1a = true;
+
+const strA2 = 'yes';
+const strB2 = 'eYs';
+const expected2a = true;
+
+const strA3 = 'no';
+const strB3 = 'noo';
+const expected3a = false;
+
+const strA4 = 'silent';
+const strB4 = 'listen';
+const expected4a = true;
