@@ -147,7 +147,7 @@ console.log(pageNumbers(nums8));
 const str1 = 'aaaabbcddd';
 const expected1 = 'a4b2c1d3';
 
-const str2 = '';
+const str2a = '';
 const expected2 = '';
 
 const str3 = 'a';
@@ -816,6 +816,7 @@ console.log(updateInventory(newInv1, currInv1));
 // do not remove any other spaces.
 
 const str1 = '   hello world    ';
+
 // Simple Solution
 function trim(str) {
   return str.trim();
@@ -833,7 +834,7 @@ function trim2(str) {
   return newStr;
 }
 
-console.log(trim2(str1));
+// console.log(trim2(str1));
 
 // ------------------problem  #3 ------------------
 //   An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
@@ -857,3 +858,42 @@ const expected3a = false;
 const strA4 = 'silent';
 const strB4 = 'listen';
 const expected4a = true;
+
+function isAnagram(str1, str2) {
+  if (str1.length != str2.length) {
+    return false;
+  }
+
+  let str1a = str1.toLowerCase();
+  let str2a = str2.toLowerCase();
+  let map = {};
+
+  for (i = 0; i < str1a.length; i++) {
+    if (map[str1a[i]]) {
+      map[str1a[i]] += 1;
+    } else {
+      map[str1a[i]] = 1;
+    }
+  }
+  // console.log(map);
+
+  for (i = 0; i < str2a.length; i++) {
+    if (map[str2a[i]]) {
+      map[str2a[i]]--;
+    }
+  }
+  // console.log(map);
+
+  let keys = Object.keys(map);
+  for (i = 0; i < keys.length; i++) {
+    if (map[keys[i]] != 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isAnagram(strA1, strB1));
+console.log(isAnagram(strA2, strB2));
+console.log(isAnagram(strA3, strB3));
+console.log(isAnagram(strA4, strB4));
