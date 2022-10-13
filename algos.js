@@ -989,8 +989,7 @@ function balance(nums) {
 
 console.log(balance(nums1));
 console.log(balance(nums2));
-*/
-
+*/ /*
 // -------------1-  Binary Search------------
 //   Array: Binary Search (non recursive)
 //   Given a sorted array and a value, return whether the array contains that value.
@@ -1075,3 +1074,96 @@ function interleave(arr1, arr2) {
 console.log(interleave(arrA1, arrB1));
 console.log(interleave(arrA2, arrB2));
 console.log(interleave(arrA3, arrB3));
+*/
+
+// ------------  problem 1 ---------------
+// Given a SORTED array of integers, dedupe the array
+// Because array elements are already in order, all duplicate values will be grouped together.
+// Ok to use a new array
+// Bonus: do it in O(n) time (no nested loops, new array ok)
+// Bonus: Do it in-place (no new array)
+// Bonus: Do it in-place in O(n) time and no new array
+// Bonus: Keep it O(n) time even if it is not sorted
+
+const nums1 = [1, 1, 1, 1];
+const expected1 = [1];
+
+const nums2 = [1, 1, 2, 2, 3, 3];
+const expected2 = [1, 2, 3];
+
+const nums3 = [1, 1, 2, 3, 3, 4];
+const expected3 = [1, 2, 3, 4];
+
+const nums4 = [1, 1];
+const expected4 = [1];
+
+function dedupe(arr) {
+  let map = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    if (map[arr[i]]) {
+      map[arr[i]] += 1;
+    } else {
+      map[arr[i]] = 1;
+    }
+  }
+
+  let keys = Object.keys(map);
+  return keys;
+}
+
+// console.log(dedupe(nums1));
+// console.log(dedupe(nums2));
+// console.log(dedupe(nums3));
+// console.log(dedupe(nums4));
+
+// -------------problem 2 -----------------------
+//   Given an array of integers
+//   return the first integer from the array that is not repeated anywhere else
+//   If there are multiple non-repeated integers in the array,
+//   the "first" one will be the one with the lowest index.
+
+const nums1a = [3, 5, 8, 4, 3, 4, 7, 6, 5];
+// const expected1 = 6;
+
+const nums2a = [3, 5, 5];
+// const expected2 = 3;
+
+const nums3a = [3, 3, 5];
+// const expected3 = 5;
+
+const nums4a = [5];
+// const expected4 = 5;
+
+const nums5a = [];
+// const expected5 = null;
+
+function firstInt(arr) {
+  if (arr.length == 0) {
+    return null;
+  }
+
+  let map = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (map[arr[i]]) {
+      map[arr[i]] += 1;
+    } else {
+      map[arr[i]] = 1;
+    }
+  }
+
+  // Need to fix this, loop through the array and return the first key that has a value of 1
+  let keys = Object.keys(map);
+
+  for (let i = 0; i < keys.length; i++) {
+    if (map[keys[i]] == 1) {
+      return keys[i];
+    }
+  }
+}
+
+console.log(firstInt(nums1a));
+console.log(firstInt(nums2a));
+console.log(firstInt(nums3a));
+console.log(firstInt(nums4a));
+console.log(firstInt(nums5a));
