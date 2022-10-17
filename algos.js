@@ -1076,6 +1076,7 @@ console.log(interleave(arrA2, arrB2));
 console.log(interleave(arrA3, arrB3));
 */
 
+/*
 // ------------  problem 1 ---------------
 // Given a SORTED array of integers, dedupe the array
 // Because array elements are already in order, all duplicate values will be grouped together.
@@ -1167,3 +1168,130 @@ console.log(firstInt(nums2a));
 console.log(firstInt(nums3a));
 console.log(firstInt(nums4a));
 console.log(firstInt(nums5a));
+*/
+/*
+// ------------------- Problem 1----------------
+//   Given an int to represent how much change is needed
+//   calculate the fewest number of coins needed to create that change,
+//   using the standard US denominations
+
+const cents1 = 25;
+// const expected1 = { quarter: 1 };
+
+const cents2 = 50;
+// const expected2 = { quarter: 2 };
+
+const cents3 = 9;
+// const expected3 = { nickel: 1, penny: 4 };
+
+const cents4 = 99;
+// const expected4 = { quarter: 3, dime: 2, penny: 4 };
+
+function change_dict(cents) {
+  penny = 1;
+  nickel = 5;
+  dime = 10;
+  quarter = 25;
+  change = {};
+  if (Math.floor(cents / 25)) {
+    change[quarter] = Math.floor(cents / 25);
+    cents -= Math.floor(cents / 25) * 25;
+  }
+  if (Math.floor(cents / 10)) {
+    change[dime] = Math.floor(cents / 10);
+    cents -= Math.floor(cents / 10) * 10;
+  }
+  if (Math.floor(cents / 5)) {
+    change[nickel] = Math.floor(cents / 5);
+    cents -= Math.floor(cents / 5) * 5;
+  }
+  if (cents) {
+    change[penny] = cents;
+  }
+  return change;
+}
+
+console.log(change_dict(cents1));
+console.log(change_dict(cents2));
+console.log(change_dict(cents3));
+console.log(change_dict(cents4));
+
+// -------------- problem 2 ----------------
+//   for this problem, don't use any built-in sort function.
+//   Missing Value
+//   You are given an array of length N that contains, in no particular order,
+//   integers from 0 to N . One integer value is missing.
+//   Quickly determine and return the missing value.
+
+const nums1a = [3, 0, 1];
+// const expected1 = 2;
+
+const nums2a = [3, 0, 1, 2];
+// const expected2 = null;
+
+// Explanation: nothing is missing
+// Bonus: now the lowest value can now be any integer (including negatives),
+// instead of always being 0.
+
+const nums3a = [2, -4, 0, -3, -2, 1];
+// const expected3 = -1;
+
+const nums4a = [5, 2, 7, 8, 4, 9, 3];
+// const expected4 = 6;
+*/
+
+// This week: Recursion
+// ------  problem 1:-------------
+// Recursive Sigma
+// Input: integer
+// Output: sum of integers from 1 to Input integer
+
+const num1 = 5;
+const expected1 = 15;
+// Explanation: (1+2+3+4+5)
+
+const num2 = 2.5;
+const expected2 = 3;
+// Explanation: (1+2)
+
+const num3 = -2;
+const expected3 = -2;
+
+function Sigma(num) {
+  num = Math.floor(num);
+  if (num < 1) {
+    return 0;
+  }
+  if (num == 1) {
+    return 1;
+  }
+  return Sigma(num - 1) + num;
+}
+
+console.log(Sigma(num1));
+console.log(Sigma(num2));
+console.log(Sigma(num3));
+
+// ------------- Problem 2---------------------
+//   Recursively sum an arr of ints
+
+const nums1 = [1, 2, 3];
+// const expected1 = 6;
+
+const nums2 = [1];
+// const expected2 = 1;
+
+const nums3 = [];
+// const expected3 = 0;
+
+function sigmaArr(arr) {
+  if (arr.length == 0) {
+    return 0;
+  }
+  var sum = arr.pop();
+  return sum + sigmaArr(arr);
+}
+
+console.log(sigmaArr(nums1));
+console.log(sigmaArr(nums2));
+console.log(sigmaArr(nums3));
