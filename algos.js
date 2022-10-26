@@ -1240,6 +1240,7 @@ const nums4a = [5, 2, 7, 8, 4, 9, 3];
 // const expected4 = 6;
 */
 
+/*
 // This week: Recursion
 // ------  problem 1:-------------
 // Recursive Sigma
@@ -1295,3 +1296,144 @@ function sigmaArr(arr) {
 console.log(sigmaArr(nums1));
 console.log(sigmaArr(nums2));
 console.log(sigmaArr(nums3));
+*/
+
+/*
+function factRec(n) {
+  if (n == 1) {
+    return 1;
+  }
+  console.log(n);
+  return n * factRec(n - 1);
+}
+
+console.log(factRec(5)); // This happens 4 times.
+
+// =-------------problem 1---------------------
+// The height map of an area in represented an 2 dimensional array.
+
+// If rain pours in one point in the map to untill it fills everywhere to
+// a height value,
+// which parts of the map will go under water?
+
+// Solution:
+// Make a 2d array for showing the points that has gone under water.
+
+// Then use a recursive algorithm to fill the 2d array. For example:
+// If the height value is less than a point's height:
+//     put '-' in the array's element.
+// If the height value is higher than a point's height:
+//     put 'X' in the element
+
+// suppose that this is the height map:
+let arr = [
+  [3, 5, 6, 7, 2],
+  [2, 3, 7, 9, 8],
+  [4, 2, 1, 3, 9],
+  [3, 2, 6, 2, 6],
+  [9, 8, 7, 5, 3],
+];
+
+function rainMap(arr, startPoint) {
+  let maxPoint = arr[0][1];
+}
+
+// Let's warm up with the Fibonacci sequence in recursive.
+//   Return the fibonacci number at the nth position, recursively.
+
+//   Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+//   The next number is found by adding up the two numbers before it,
+//   starting with 0 and 1 as the first two numbers of the sequence.
+
+const num1 = 0;
+const expected1 = 0;
+
+const num2 = 1;
+const expected2 = 1;
+
+const num3 = 2;
+const expected3 = 1;
+
+const num4 = 3;
+const expected4 = 2;
+
+const num5 = 4;
+const expected5 = 3;
+
+const num6 = 8;
+const expected6 = 21;
+
+function findFibo(num) {
+  if (num <= 1) return num;
+  return findFibo(num - 1) + findFibo(num - 2);
+}
+
+// Now solve the recursion algorithm with Memoization.
+let dict = {};
+function fib(n) {
+  if (dict[n]) {
+    return dict[n];
+  }
+  if (n <= 1) {
+    dict[n] = n;
+    return n;
+  } else {
+    temp = fib(n - 1) + fib(n - 2);
+    dict[n] = temp;
+    return temp;
+  }
+}
+*/
+
+// -------------problem 1---------------------
+
+// The height map of an area in represented an 2 dimensional array.
+
+// If rain pours in one point in the map to untill it fills everywhere to
+// a height value,
+// which parts of the map will go under water?
+
+// Solution:
+// Make a 2d array for showing the points that has gone under water.
+// Then use a recursive algorithm to fill the 2d array. For example:
+// If the height value is less than a point's height:
+//     put '-' in the array's element.
+// If the height value is higher than a point's height:
+//     put 'X' in the element
+// suppose that this is the height map:
+
+[
+  [3, 5, 6, 7, 2],
+  [2, 3, 7, 9, 8],
+  [4, 2, 1, 3, 9],
+  [3, 2, 6, 2, 6],
+  [9, 8, 7, 5, 3],
+];
+
+// -------------------  Problem 2------------------
+//   Given
+//     - a 2d array representing a social space as a grid
+//       Each grid space either has a string representing a person's name,
+//       or null if there is no person there
+//     - a point object {x: int, y: int} indicating where "patient zero" is in the grid
+//   return an array of all the names of the people who that corona virus will spread to due to not social distancing
+
+//   There will be exactly one grid space with the value "patient zero" that
+//   represents someone infected.
+//   Standing next to someone means there is someone in the grid space immediately
+//   above, below, left, or right. Infection cannot directly spread diagonally.
+//   Someone is social distancing if the grid space above, below, left, and right are null or
+//   there is no space next to them.
+//   For simplicity sake, let's assume if a person is standing
+//   next to someone who is or becomes infected, they will also become infected.
+//   Find everyone who corona virus will spread to starting from "patient zero" as the virus spreads outward.
+
+const socialSpaceGrid = [
+  ['Jon2', 'Jane2', null, null],
+  [null, 'Jon1', 'Jane1', null],
+  ['Jane4', 'patient zero', null, 'Jon3'],
+  ['Jon4', null, 'Jane3', null],
+];
+const patientZeroPoint = { x: 1, y: 2 };
+const expected = ['Jane4', 'Jon4', 'Jon1', 'Jane1', 'Jane2', 'Jon2'];
+// order of output list does not matter
