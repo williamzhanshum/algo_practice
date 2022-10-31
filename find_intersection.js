@@ -1,13 +1,30 @@
+// function intersection(arr1, arr2) {
+//   let newArr = [];
+//   let i = 0;
+//   let j = 0;
+
+//   while (i < arr1.length && j < arr2.length) {
+//     if (arr1[i] === arr2[j]) {
+//       if (newArr[newArr.length - 1] !== arr1[i]) {
+//         newArr.push(arr1[i]);
+//       }
+//       i++;
+//       j++;
+//     } else if (arr1[i] < arr2[j]) {
+//       i++;
+//     } else j++;
+//   }
+//   return newArr;
+// }
+
 function intersection(arr1, arr2) {
   let newArr = [];
   let i = 0;
   let j = 0;
 
   while (i < arr1.length && j < arr2.length) {
-    if (arr1[i] === arr2[j]) {
-      if (newArr[newArr.length - 1] !== arr1[i]) {
-        newArr.push(arr1[i]);
-      }
+    if (arr1[i] === arr2[j] && newArr[newArr.length - 1] !== arr1[i]) {
+      newArr.push(arr1[i]);
       i++;
       j++;
     } else if (arr1[i] < arr2[j]) {
