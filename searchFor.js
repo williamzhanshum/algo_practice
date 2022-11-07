@@ -20,35 +20,18 @@ const output = [
   { firstName: 'Bob', lastName: 'White', age: 31 },
 ];
 
-// function search(arr, obj) {
-//   const keys = Object.keys(obj);
-//   console.log(keys);
-//   let result = arr.filter((x) => {
-//     for (i = 0; i < keys.length; i++) {
-//       console.log('Object:', obj[keys[i]]);
-//       console.log('X:', x[keys[i]]);
-//       if (obj[keys[i]] !== x[keys[i]]) {
-//         return false;
-//       }
-//     }
-//     return true;
-//   });
-//   return result;
-// }
-
-// Using forEach
 function search(arr, obj) {
   const keys = Object.keys(obj);
-  //   console.log(keys);
+  console.log(keys);
   let result = arr.filter((x) => {
-    keys.forEach((y) => {
-      console.log(obj[y]);
-      console.log(x[y]);
-      if (obj[y] != x[y]) {
+    for (i = 0; i < keys.length; i++) {
+      //   console.log('Object:', obj[keys[i]]);
+      //   console.log('X:', x[keys[i]]);
+      if (obj[keys[i]] !== x[keys[i]]) {
         return false;
       }
-      return true;
-    });
+    }
+    return true;
   });
   return result;
 }
